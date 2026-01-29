@@ -24,14 +24,7 @@ services:
       - stable-diffusion-models:/opt/stable-diffusion-webui/models
       - stable-diffusion-outputs:/opt/stable-diffusion-webui/outputs
     environment:
-      - COMMANDLINE_ARGS=--api --listen --xformers --enable-insecure-extension-access
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
+      - COMMANDLINE_ARGS=--api --listen --skip-torch-cuda-test --use-cpu all --no-half --enable-insecure-extension-access
     restart: unless-stopped
 
   open-webui:
